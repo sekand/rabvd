@@ -1,3 +1,5 @@
+
+import os
 import keep_alive
 from discord import app_commands
 import discord
@@ -6,7 +8,7 @@ keep_alive.keep_alive()
 intents = discord.Intents.all()
 client=discord.Client(intents=intents)
 tree= app_commands.CommandTree(client)
-
+my_secret = os.environ['token']
 @client.event
 async def on_ready():
     await client.change_presence(activity=discord.Game(name="Phigros"))
@@ -38,4 +40,4 @@ async def acc(ctx,*, p: int, g: int, tn: int):
     acc = (p + g * 0.65) / tn * 100
     await ctx.response.send_message(f"Accuracy: {acc:.2f}%")
 
-client.run('MTA3NjQwNzU5Mjc2ODc3NDIxNA.Gjytnl.JOjJ3mPxxf1yrdbD71QHnEiTeeTjx7puyQAFbs')
+client.run(my_secret)
